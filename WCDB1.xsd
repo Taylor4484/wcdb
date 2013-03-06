@@ -1,0 +1,233 @@
+<?xml version="1.0" ?>
+
+<!-- XSD for WCBD1.xml -->
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:element name="World Crises Database">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Crisis" type="cType"
+							minOccurs="0" maxOccurs="10" />
+				<xsd:element name="Organization" type="oType"
+							minOccurs="0" maxOccurs="10" />
+				<xsd:element name="Person" type="pType"
+							minOccurs="0" maxOccurs="10" />
+			</xsd:sequence>
+		</xsd:complexType>
+		<xsd:key name="cKey">
+			<xsd:selector xpath="Crisis" />
+			<xsd:field xpath="@cID" />
+		</xsd:key>
+		<xsd:key name="oKey">
+			<xsd:selector xpath="Organization" />
+			<xsd:field xpath="@oID" />
+		</xsd:key>
+		<xsd:key name="pKey">
+			<xsd:selector xpath="Person" />
+			<xsd:field xpath="@pID" />
+		</xsd:key>
+		<xsd:keyref name="cKeyRef" refer="cKey">
+			<xsd:selector xpath="Organzation/Crises" />
+			<xsd:field xpath="cID" />
+		</xsd:keyref>
+		<xsd:keyref name="cKeyRef" refer="cKey">
+			<xsd:selector xpath="Person/Crises" />
+			<xsd:field xpath="cID" />
+		</xsd:keyref>
+		<xsd:keyref name="oKeyRef" refer="oKey">
+			<xsd:selector xpath="Crisis/Organizations" />
+			<xsd:field xpath="oID" />
+		</xsd:keyref>
+		<xsd:keyref name="oKeyRef" refer="oKey">
+			<xsd:selector xpath="Person/Organizations" />
+			<xsd:field xpath="oID" />
+		</xsd:keyref>
+		<xsd:keyref name="pKeyRef" refer="pKey">
+			<xsd:selector xpath="Crisis/People" />
+			<xsd:field xpath="pID" />
+		</xsd:keyref>
+		<xsd:keyref name="pKeyRef" refer="pKey">
+			<xsd:selector xpath="Organization/People" />
+			<xsd:field xpath="pID" />
+		</xsd:keyref>
+	</xsd:element>
+	<xsd:complexType name="cType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string"
+						minOccurs="1" maxOccurs="1">
+			</xsd:element>
+			<xsd:element name="Kind" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Location" type="xsd:string">
+				<xsd:complexType>
+					<xsd:attribute name="City" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="State" type="xsd:string"
+									minOccurs="0" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="Country" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Date" type="xsd:string"
+						minOccurs="1" maxOccurs="1">
+				<xsd:complexType>
+					<xsd:attribute name="Time" type="xsd:string"
+						minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Human Impact" type="xsd:integer">
+			</xsd:element>
+			<xsd:element name="Economic Impact" type="xsd:integer">
+			</xsd:element>
+			<xsd:element name="Resources Needed" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Ways to Help" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Images" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Videos" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Maps" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Social Networks" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Citations" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="External Links" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Organizations" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="oID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="People" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="pID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="cID" type="xsd:string" use="required" />
+	</xsd:complexType>
+	<xsd:complexType name="oType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Kind" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Location" type="xsd:string">
+				<xsd:complexType>
+					<xsd:attribute name="City" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="State" type="xsd:string"
+									minOccurs="0" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="Country" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="History" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Contact Info" type="xsd:integer">
+			</xsd:element>
+			<xsd:element name="Images" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Videos" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Maps" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Social Networks" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Citations" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="External Links" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Crises" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="cID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="People" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="pID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="oID" type="xsd:string" use="required" />
+	</xsd:complexType>
+	<xsd:complexType name="pType">
+		<xsd:sequence>
+			<xsd:element name="Name" type="xsd:string">
+				<xsd:complexType>
+					<xsd:attribute name="First" type="xsd:string"
+						minOccurs="1" maxOccurs="1" />
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="Middle" type="xsd:string"
+						minOccurs="0" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="Last" type="xsd:string"
+						minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Kind" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Location" type="xsd:string">
+				<xsd:complexType>
+					<xsd:attribute name="City" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="State" type="xsd:string"
+									minOccurs="0" maxOccurs="1"/>
+				</xsd:complexType>
+				<xsd:complexType>
+					<xsd:attribute name="Country" type="xsd:string"
+									minOccurs="1" maxOccurs="1"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Images" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Videos" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Maps" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Social Networks" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Citations" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="External Links" type="xsd:string">
+			</xsd:element>
+			<xsd:element name="Crises" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="cID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Organizations" type="xsd:string"
+						minOccurs="0" maxOccurs="10">
+				<xsd:complexType>
+					<xsd:attribute name="oID" type="xsd:string"
+									use="required" />
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="pID" type="xsd:string" use="required" />
+	</xsd:complexType>
+</xsd:schema>
